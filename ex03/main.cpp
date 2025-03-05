@@ -5,21 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: andmart2 <andmart2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 19:38:28 by andmart2          #+#    #+#             */
-/*   Updated: 2025/03/05 20:40:35 by andmart2         ###   ########.fr       */
+/*   Created: 2025/03/05 22:54:07 by andmart2          #+#    #+#             */
+/*   Updated: 2025/03/05 22:58:01 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 
-int	main(void)
+int main(void)
 {
 	ClapTrap mario("Mario");
-	ClapTrap luigi;
-	ClapTrap wario = luigi;
+	ScavTrap luigi("Wrong name");
+	FragTrap wario("WARIO");
+	DiamondTrap waluigi;
 
 	luigi.setName("Luigi");
-	wario.setName("Wario");
 	mario.setAttackDmg(5);
 	mario.attack(luigi.getName());
 	luigi.takeDamage(mario.getAttackDamage());
@@ -27,25 +30,13 @@ int	main(void)
 	luigi.setAttackDmg(7);
 	luigi.attack(mario.getName());
 	mario.takeDamage(luigi.getAttackDamage());
-	mario.setAttackDmg(5);
 	mario.attack(luigi.getName());
 	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
-	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
-	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
-	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
-	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
-	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
-	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
-	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
-	luigi.takeDamage(mario.getAttackDamage());
-	mario.attack(luigi.getName());
+
+	luigi.guardGate();
+	wario.highFivesGuys();
+	waluigi.whoAmI();
+	waluigi.setName("Waluigi");
+	waluigi.whoAmI();
 	return (0);
 }
