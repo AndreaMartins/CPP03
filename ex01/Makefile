@@ -1,39 +1,37 @@
-NAME = ex01
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: andmart2 <andmart2@student.42barcelona.    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/11 12:53:45 by andmart2          #+#    #+#              #
+#    Updated: 2025/03/11 14:33:21 by andmart2         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC_FILES = ClapTrap.cpp main.cpp ScavTrap.cpp
+NAME = scavTrap
 
-OBJ_DIR = objs/
-OBJ_FILES = $(SRC_FILES:.cpp=.o)
-OBJS = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
-
-DEP_FILES = $(SRC_FILES:.cpp=.d)
-DEPS = $(addprefix $(OBJ_DIR), $(DEP_FILES))
-
-CC = c++
-CFLAGS = -std=c++98 -Wall -Wextra -Werror -MMD #-fsanitize=address
-RM = rm -f
-INCLUDE = -I ./
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=address
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
+INCLUDES = ClapTrap.hpp ScavTrap.hpp
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) -o $@
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJ_DIR):
-	mkdir -p $@
-
-$(OBJ_DIR)%.o: %.cpp
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+%.o: %.cpp $(INCLUDES)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(DEPS)
+	rm -f $(OBJS)
 
 fclean: clean
-	$(RM) -r $(OBJ_DIR)
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
-
--include $(DEPS)
 
 .PHONY: all clean fclean re

@@ -6,29 +6,27 @@
 /*   By: andmart2 <andmart2@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:54:18 by andmart2          #+#    #+#             */
-/*   Updated: 2025/03/05 22:58:54 by andmart2         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:42:39 by andmart2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
 
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
+#include <iostream>
+#include <string>
 
-class ScavTrap : virtual public ClapTrap
-{
-	public:
-		ScavTrap();
-		ScavTrap(std::string name);
+class ScavTrap : virtual public ClapTrap {
+    public:
+        ScavTrap();
+        ScavTrap(const std::string name);
+        ScavTrap(const ScavTrap &scavTrap);
+        ScavTrap &operator=(const ScavTrap &scavTrap);
+        ~ScavTrap();
 
-		ScavTrap(const ScavTrap &copy);
-		ScavTrap& operator=(const ScavTrap &other);
-
-		void attack(const std::string& target);
-		void guardGate();
-		
-		~ScavTrap();
+        void attack(const std::string &target);
+        void guardGate();
 };
-
 
 #endif
